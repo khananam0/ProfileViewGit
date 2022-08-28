@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile card Design</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+<nav>
+<div class="log">
+    <img src="images/githubimage.png"  height="50%" width="50%">
+</div>
+    <div class="button_search">
+        <form class="searchbar" id="myForm">
+            <input type="text" class="form-control" placeholder="Enter the username" id="search" required>
+            <button>Search</button>
+        </form>
+    </div>
+</nav>
+
+
+    <div class="container">
+        <div class="profile-box">
+            <img src="images/menu1.png" class="menu-icon" height="20px" width="50px" >
+            <img src="images/setting.png" class="setting-icon" height="20px" width="50px">
+            <img id="img" src="" class="profile-pic" height="200px" width="200">
+            <h3>Jack Nicholson</h3>
+            <p>Web Developer At Google, California</p>
+            <div class="social-media">
+                <img src="images/instagram.png" height="30px" width="30px">
+                <img src="images/telegram0.png" height="35px" width="35px">
+                <img src="images/github.png" height="30px" width="30px">
+            </div>
+            <button type="button">Follow</button>
+            <div class="profile-bottom">
+                <p>Learn More About My Profile</p>
+                <img src="images/arrow0.png" height="30px" width="30px">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var my_id = document.getElementById("myForm")
+    my_id = addEventListener('submit', function (e) {
+        e.preventDefault()
+        var search = document.getElementById("search").value
+        var realname = search.split(' ').join('')
+        fetch('https://api.github.com/users/' + realname)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                document.getElementById("img").src = data.avatar_url
+                document.getElementById("name").alt = data.name
+            })
+    })
+
+</script>
